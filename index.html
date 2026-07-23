@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💜 Will you go on a date with me?</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(145deg, #4a148c, #7b1fa2, #ab47bc);
+      padding: 15px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      border-radius: 50px;
+      padding: 30px 22px 35px;
+      max-width: 480px;
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      color: #fff;
+    }
+
+    .panda {
+      font-size: 60px;
+      display: inline-block;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 10px 0 6px;
+    }
+
+    .sub {
+      font-size: 15px;
+      opacity: 0.8;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      padding: 12px 22px;
+      border-radius: 60px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin: 5px 6px;
+      min-width: 80px;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.03);
+    }
+
+    .btn.selected {
+      background: #fff;
+      color: #4a148c;
+    }
+
+    .action-btn {
+      padding: 14px 36px;
+      border-radius: 60px;
+      font-size: 18px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+      min-width: 140px;
+      margin: 6px 10px;
+    }
+
+    #yesBtn {
+      background: #fff;
+      color: #4a148c;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+    }
+
+    #noBtn {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 8px 0 12px;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .msg {
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: 500;
+      min-height: 30px;
+    }
+
+    .summary {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 30px;
+      padding: 10px 16px;
+      margin: 12px 0 6px;
+      font-size: 14px;
+      display: inline-block;
+    }
+
+    .nav-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      padding: 10px 28px;
+      border-radius: 60px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 12px;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin: 10px 0 12px;
+    }
+
+    .cal-day {
+      background: rgba(255,255,255,0.06);
+      border-radius: 30px;
+      padding: 8px 0;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .cal-day:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    .cal-day.selected {
+      background: #fff;
+      color: #4a148c;
+    }
+
+    .cal-day.empty {
+      background: transparent;
+      cursor: default;
+    }
+
+    .final-panda {
+      font-size: 80px;
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .final-heart {
+      font-size: 40px;
+      display: inline-block;
+      animation: pulse 1.2s infinite;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card"> <!-- الصفحة 1 -->
+  <div class="page active" id="page1">
+    <div class="panda">🐼</div>
+    <h1>💜 Will you go<br />on a date with me?</h1>
+    <p class="sub">✨ Choose your answer ✨</p>
+    <div style="margin: 18px 0 8px;">
+      <button class="action-btn" id="yesBtn">✅ Yes, I'd love to</button>
+      <button class="action-btn" id="noBtn">❌ No, I apologize</button>
+    </div>
+    <p id="msg1" class="msg"></p>
+  </div>
+
+  <!-- الصفحة 2 -->
+  <div class="page" id="page2">
+    <div class="panda">🐼</div>
+    <h2 style="font-size:22px;">📍 What kind of date?</h2>
+    <p class="sub">Pick your favorite vibe</p>
+    <div class="options" id="typeOptions">
+      <button class="btn" data-value="Restaurant">🍽️ Restaurant</button>
+      <button class="btn" data-value="Cafe">☕ Cafe</button>
+      <button class="btn" data-value="Park">🌳 Park</button>
+      <button class="btn" data-value="Cinema">🎬 Cinema</button>
+      <button class="btn" data-value="Beach">🏖️ Beach</button>
+    </div>
+    <button class="nav-btn" onclick="goToPage(3)">Next ➜</button>
+  </div>
+
+  <!-- الصفحة 3 -->
+  <div class="page" id="page3">
+    <div class="panda">🐼</div>
+    <h2 style="font-size:22px;">⏰ What time?</h2>
+    <p class="sub">Choose a time that suits you</p>
+    <div class="options" id="timeOptions">
+      <button class="btn" data-value="6:00 PM">🌅 6:00 PM</button>
+      <button class="btn" data-value="7:00 PM">🌇 7:00 PM</button>
+      <button class="btn" data-value="8:00 PM">🌆 8:00 PM</button>
+      <button class="btn" data-value="9:00 PM">🌙 9:00 PM</button>
+      <button class="btn" data-value="10:00 PM">✨ 10:00 PM</button>
+    </div>
+    <button class="nav-btn" onclick="goToPage(4)">Next ➜</button>
+  </div>
+
+  <!-- الصفحة 4 -->
+  <div class="page" id="page4">
+    <div class="panda">🐼</div>
+    <h2 style="font-size:22px;">📅 Choose a date</h2>
+    <p class="sub">Pick a day that works for you</p>
+    <div class="calendar-grid" id="calendarGrid"></div>
+    <button class="nav-btn" onclick="goToPage(5)">Next ➜</button>
+  </div>
+
+  <!-- الصفحة 5 -->
+  <div class="page" id="page5">
+    <div class="panda">🐼</div>
+    <h2 style="font-size:22px;">🍕 What food do you crave?</h2>
+    <p class="sub">Choose your favorite</p>
+    <div class="options" id="foodOptions">
+      <button class="btn" data-value="Pizza">🍕 Pizza</button>
+      <button class="btn" data-value="Burger">🍔 Burger</button>
+      <button class="btn" data-value="Sushi">🍣 Sushi</button>
+      <button class="btn" data-value="Pasta">🍝 Pasta</button>
+      <button class="btn" data-value="Ice Cream">🍦 Ice Cream</button>
+    </div>
+    <button class="nav-btn" onclick="goToPage(6)">Next ➜</button>
+  </div>
+
+  <!-- الصفحة 6 -->
+  <div class="page" id="page6">
+    <div class="final-panda">🐼💜</div>
+    <h2 style="font-size:26px;">🎉 You're amazing!</h2>
+    <p style="font-size:17px; opacity:0.95; margin: 10px 0 6px;">I can't wait for our date! 🥰</p>
+    <div class="summary" id="finalSummary">
+      📌 <span id="finalType">-</span> &nbsp;|&nbsp;
+      ⏱️ <span id="finalTime">-</span> &nbsp;|&nbsp;
+      📅 <span id="finalDate">-</span> &nbsp;|&nbsp;
+      🍽️ <span id="finalFood">-</span>
+    </div>
+    <p style="font-size:15px; margin-top:14px; opacity:0.8;">
+      💕 See you soon, cutie!<br />
+      <span style="font-size:30px; display:inline-block; animation: pulse 1.5s infinite;">💖</span>
+    </p>
+    <button class="nav-btn" onclick="resetAll()" style="margin-top:18px;">🔄 Start Over</button>
+  </div>
+
+</div>
+
+<script>
+  let currentPage = 1;
+  let selectedType = null;
+  let selectedTime = null;
+  let selectedDate = null;
+  let selectedFood = null;
+
+  function goToPage(num) {
+    if (num < 1 || num > 6) return;
+    if (num === 3 && !selectedType) {
+      document.getElementById('msg1').textContent = '⚠️ Please choose a date type first!';
+      return;
+    }
+    if (num === 4 && !selectedTime) {
+      document.getElementById('msg1').textContent = '⚠️ Please choose a time first!';
+      return;
+    }
+    if (num === 5 && !selectedDate) {
+      document.getElementById('msg1'). textContent = '⚠️ Please choose a date first!';
+      return;
+    }
+    if (num === 6 && !selectedFood) {
+      document.getElementById('msg1').textContent = '⚠️ Please choose your food first!';
+      return;
+    }
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page' + num).classList.add('active');
+    currentPage = num;
+    document.getElementById('msg1').textContent = '';
+    if (num === 6) {
+      document.getElementById('finalType').textContent = selectedType || '-';
+      document.getElementById('finalTime').textContent = selectedTime || '-';
+      document.getElementById('finalDate').textContent = selectedDate || '-';
+      document.getElementById('finalFood').textContent = selectedFood || '-';
+    }
+  }
+
+  document.querySelectorAll('.options .btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const parent = this.parentElement;
+      parent.querySelectorAll('.btn').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const val = this.dataset.value;
+      if (parent.id === 'typeOptions') selectedType = val;
+      else if (parent.id === 'timeOptions') selectedTime = val;
+      else if (parent.id === 'foodOptions') selectedFood = val;
+    });
+  });
+
+  function buildCalendar() {
+    const grid = document.getElementById('calendarGrid');
+    grid.innerHTML = '';
+    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const startDay = 3;
+    const totalDays = 31;
+    days.forEach(d => {
+      const div = document.createElement('div');
+      div.textContent = d;
+      div.style.fontSize = '11px';
+      div.style.opacity = '0.6';
+      div.style.fontWeight = '600';
+      grid.appendChild(div);
+    });
+    for (let i = 0; i < startDay; i++) {
+      const div = document.createElement('div');
+      div.className = 'cal-day empty';
+      grid.appendChild(div);
+    }
+    for (let d = 1; d <= totalDays; d++) {
+      const div = document.createElement('div');
+      div.className = 'cal-day';
+      div.textContent = d;
+      const dateStr = 'July ' + d + ', 2026';
+      div.dataset.value = dateStr;
+      div.addEventListener('click', function() {
+        document.querySelectorAll('.cal-day').forEach(el => el.classList.remove('selected'));
+        this.classList.add('selected');
+        selectedDate = dateStr;
+      });
+      grid.appendChild(div);
+    }
+  }
+  buildCalendar();
+
+  let noClickCount = 0;
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const msg1 = document.getElementById('msg1');
+
+  noBtn.addEventListener('mouseover', function() {
+    if (noClickCount < 10) {
+      const x = Math.random() * (window.innerWidth - 160);
+      const y = Math.random() * (window.innerHeight - 160);
+      noBtn.style.position = 'fixed';
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+    }
+  });
+
+  noBtn.addEventListener('click', function() {
+    noClickCount++;
+    if (noClickCount <= 5) {
+      msg1.textContent = '😅 Tried ' + noClickCount + ' times... YES is growing!';
+      let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+      yesBtn.style.fontSize = (currentSize + 4) + 'px';
+      yesBtn.style.padding = (parseFloat(yesBtn.style.padding || '14') + 4) + 'px 36px';
+      let noSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
+      if (noSize > 12) noBtn.style.fontSize = (noSize - 2) + 'px';
+    } else {
+      msg1.innerHTML = '💔 Okay... but you know where to find me! 😂';
+      yesBtn.style.fontSize = '44px';
+      yesBtn.style.padding = '30px 60px';
+      noBtn.style.display = 'none';
+    }
+  });
+
+  yesBtn.addEventListener('click', function() {
+    goToPage(2);
+  });
+
+  function resetAll() {
+    selectedType = null;
+    selectedTime = null;
+    selectedDate = null;
+    selectedFood = null;
+    noClickCount = 0;
+    document.querySelectorAll('.btn').forEach(b => b.classList.remove('selected'));
+    document.querySelectorAll('.cal-day').forEach(d => d.classList.remove('selected'));
+    yesBtn. style.fontSize = '18px';
+    yesBtn.style.padding = '14px 36px';
+    noBtn.style.display = 'inline-block';
+    noBtn.style.position = 'static';
+    noBtn.style.fontSize = '18px';
+    msg1.textContent = '';
+    goToPage(1);
+  }
+
+  goToPage(1);
+</script>
+
+</body>
+</html>
