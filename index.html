@@ -19,14 +19,12 @@
             align-items: center;
             min-height: 100vh;
             background: linear-gradient(145deg, #4a148c, #7b1fa2, #ab47bc);
-            background-attachment: fixed;
             padding: 15px;
         }
 
         .card {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border-radius: 50px;
             padding: 30px 22px 35px;
             max-width: 480px;
@@ -35,15 +33,12 @@
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
             text-align: center;
             color: #fff;
-            transition: 0.3s;
-            position: relative;
         }
 
         .panda {
             font-size: 60px;
             display: inline-block;
             animation: bounce 2s infinite;
-            margin-bottom: 2px;
         }
 
         @keyframes bounce {
@@ -54,17 +49,13 @@
         h1 {
             font-size: 28px;
             font-weight: 700;
-            margin-bottom: 6px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            line-height: 1.3;
+            margin: 10px 0 6px;
         }
 
         .sub {
             font-size: 15px;
             opacity: 0.8;
             margin-bottom: 18px;
-            font-weight: 300;
-            letter-spacing: 1px;
         }
 
         .btn {
@@ -78,22 +69,17 @@
             cursor: pointer;
             transition: 0.3s ease;
             margin: 5px 6px;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
             min-width: 80px;
         }
 
         .btn:hover {
             background: rgba(255, 255, 255, 0.25);
             transform: scale(1.03);
-            border-color: #fff;
         }
 
         .btn.selected {
             background: #fff;
             color: #4a148c;
-            border-color: #fff;
-            box-shadow: 0 8px 28px rgba(255, 255, 255, 0.2);
         }
 
         .action-btn {
@@ -113,14 +99,12 @@
             color: #4a148c;
             box-shadow: 0 8px 28px rgba(0,0,0,0.15);
         }
-        #yesBtn:hover { transform: scale(1.06); background: #f3e5f5; }
 
         #noBtn {
             background: rgba(255, 255, 255, 0.12);
             color: #fff;
             border: 1.5px solid rgba(255, 255, 255, 0.2);
         }
-        #noBtn:hover { background: rgba(255, 255, 255, 0.25); }
 
         .options {
             display: flex;
@@ -133,6 +117,7 @@
         .page {
             display: none;
         }
+
         .page.active {
             display: block;
         }
@@ -147,17 +132,10 @@
         .summary {
             background: rgba(255, 255, 255, 0.06);
             border-radius: 30px;
-            padding: 10px 16px; margin: 12px 0 6px;
+            padding: 10px 16px;
+            margin: 12px 0 6px;
             font-size: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
             display: inline-block;
-        }
-
-        hr {
-            border: none;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.06);
-            margin: 16px 0 10px;
         }
 
         .nav-btn {
@@ -172,17 +150,18 @@
             transition: 0.3s;
             margin-top: 12px;
         }
+
         .nav-btn:hover {
             background: rgba(255,255,255,0.2);
             transform: scale(1.02);
         }
 
         .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
+            display: grid; grid-template-columns: repeat(7, 1fr);
             gap: 6px;
             margin: 10px 0 12px;
         }
+
         .cal-day {
             background: rgba(255,255,255,0.06);
             border-radius: 30px;
@@ -191,16 +170,17 @@
             font-weight: 500;
             cursor: pointer;
             transition: 0.2s;
-            border: 1px solid transparent;
         }
+
         .cal-day:hover {
             background: rgba(255,255,255,0.15);
         }
+
         .cal-day.selected {
             background: #fff;
             color: #4a148c;
-            border-color: #fff;
         }
+
         .cal-day.empty {
             background: transparent;
             cursor: default;
@@ -210,17 +190,18 @@
             font-size: 80px;
             animation: bounce 1.5s infinite;
         }
-        .final-heart {
-            font-size: 40px;
-            display: inline-block;
-            animation: pulse 1.2s infinite;
-        }
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.2); }
         }
 
-        /* تنسيق حقل إدخال الوقت */
+        .final-heart {
+            font-size: 40px;
+            display: inline-block;
+            animation: pulse 1.2s infinite;
+        }
+
         #timeInput {
             width: 80%;
             padding: 14px 20px;
@@ -231,10 +212,9 @@
             font-size: 18px;
             text-align: center;
             outline: none;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
             margin: 10px 0 12px;
         }
+
         #timeInput::placeholder {
             color: rgba(255,255,255,0.4);
             font-weight: 300;
@@ -245,14 +225,11 @@
 
 <div class="card">
 
-    <!-- ============================================================ -->
-    <!-- الصفحة 1: السؤال الرئيسي + YES / NO                          -->
-    <!-- ============================================================ -->
+    <!-- الصفحة 1 -->
     <div class="page active" id="page1">
         <div class="panda">🐼</div>
         <h1>💜 Will you go<br />on a date with me?</h1>
         <p class="sub">✨ Choose your answer ✨</p>
-
         <div style="margin: 18px 0 8px;">
             <button class="action-btn" id="yesBtn">✅ Yes, I'd love to</button>
             <button class="action-btn" id="noBtn">❌ No, I apologize</button>
@@ -260,9 +237,7 @@
         <p id="msg1" class="msg"></p>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- الصفحة 2: نوع الموعد                                          -->
-    <!-- ============================================================ -->
+    <!-- الصفحة 2 -->
     <div class="page" id="page2">
         <div class="panda">🐼</div>
         <h2 style="font-size:22px;">📍 What kind of date?</h2>
@@ -271,28 +246,23 @@
             <button class="btn" data-value="Restaurant">🍽️ Restaurant</button>
             <button class="btn" data-value="Cafe">☕ Cafe</button>
             <button class="btn" data-value="Park">🌳 Park</button>
-            <button class="btn" data-value="Cinema">🎬 Cinema</button> <button class="btn" data-value="Beach">🏖️ Beach</button>
+            <button class="btn" data-value="Cinema">🎬 Cinema</button>
+            <button class="btn" data-value="Beach">🏖️ Beach</button>
         </div>
         <button class="nav-btn" onclick="goToPage(3)">Next ➜</button>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- الصفحة 3: الوقت (إدخال نصي)                                  -->
-    <!-- ============================================================ -->
+    <!-- الصفحة 3 -->
     <div class="page" id="page3">
         <div class="panda">🐼</div>
         <h2 style="font-size:22px;">⏰ What time?</h2>
         <p class="sub">Type the time that suits you best</p>
-        
         <input type="text" id="timeInput" placeholder="e.g. 7:30 PM" />
-        
         <br />
         <button class="nav-btn" onclick="saveTimeAndNext()">Next ➜</button>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- الصفحة 4: التاريخ (تقويم)                                    -->
-    <!-- ============================================================ -->
+    <!-- الصفحة 4 -->
     <div class="page" id="page4">
         <div class="panda">🐼</div>
         <h2 style="font-size:22px;">📅 Choose a date</h2>
@@ -301,9 +271,7 @@
         <button class="nav-btn" onclick="goToPage(5)">Next ➜</button>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- الصفحة 5: نوع الأكل                                           -->
-    <!-- ============================================================ -->
+    <!-- الصفحة 5 -->
     <div class="page" id="page5">
         <div class="panda">🐼</div>
         <h2 style="font-size:22px;">🍕 What food do you crave?</h2>
@@ -313,20 +281,15 @@
             <button class="btn" data-value="Burger">🍔 Burger</button>
             <button class="btn" data-value="Sushi">🍣 Sushi</button>
             <button class="btn" data-value="Pasta">🍝 Pasta</button>
-            <button class="btn" data-value="Ice Cream">🍦 Ice Cream</button>
-        </div>
+            <button class="btn" data-value="Ice Cream">🍦 Ice Cream</button> </div>
         <button class="nav-btn" onclick="goToPage(6)">Next ➜</button>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- الصفحة 6: النهاية (تهنئة + باندا)                           -->
-    <!-- ============================================================ -->
+    <!-- الصفحة 6 -->
     <div class="page" id="page6">
         <div class="final-panda">🐼💜</div>
         <h2 style="font-size:26px;">🎉 You're amazing!</h2>
-        <p style="font-size:17px; opacity:0.95; margin: 10px 0 6px;">
-            I can't wait for our date! 🥰
-        </p>
+        <p style="font-size:17px; opacity:0.95; margin: 10px 0 6px;">I can't wait for our date! 🥰</p>
         <div class="summary" id="finalSummary">
             📌 <span id="finalType">-</span> &nbsp;|&nbsp;
             ⏱️ <span id="finalTime">-</span> &nbsp;|&nbsp;
@@ -343,26 +306,19 @@
 </div>
 
 <script>
-    // ================================================================
-    //  متغيرات عامة
-    // ================================================================
     let currentPage = 1;
-    const totalPages = 6;
-
     let selectedType = null;
     let selectedTime = null;
     let selectedDate = null;
     let selectedFood = null;
 
-    // ================================================================
-    //  التنقل بين الصفحات
-    // ================================================================
     function goToPage(num) {
-        if (num < 1 || num > totalPages) return;
+        if (num < 1 || num > 6) return;
 
         if (num === 3 && !selectedType) {
             document.getElementById('msg1').textContent = '⚠️ Please choose a date type first!';
-            return; }
+            return;
+        }
         if (num === 4 && !selectedTime) {
             document.getElementById('msg1').textContent = '⚠️ Please enter a time first!';
             return;
@@ -381,12 +337,14 @@
         currentPage = num;
         document.getElementById('msg1').textContent = '';
 
-        if (num === 6) updateFinalSummary();
+        if (num === 6) {
+            document.getElementById('finalType').textContent = selectedType || '-';
+            document.getElementById('finalTime').textContent = selectedTime || '-';
+            document.getElementById('finalDate').textContent = selectedDate || '-';
+            document.getElementById('finalFood').textContent = selectedFood || '-';
+        }
     }
 
-    // ================================================================
-    //  حفظ الوقت من حقل الإدخال
-    // ================================================================
     function saveTimeAndNext() {
         const input = document.getElementById('timeInput');
         const val = input.value.trim();
@@ -398,32 +356,23 @@
         goToPage(4);
     }
 
-    // ================================================================
-    //  اختيارات الأزرار (إضافة class selected)
-    // ================================================================
     document.querySelectorAll('.options .btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const parent = this.parentElement;
             parent.querySelectorAll('.btn').forEach(b => b.classList.remove('selected'));
             this.classList.add('selected');
-
             const val = this.dataset.value;
-
             if (parent.id === 'typeOptions') selectedType = val;
             else if (parent.id === 'foodOptions') selectedFood = val;
         });
     });
 
-    // ================================================================
-    //  تقويم بسيط (أيام يوليو 2026)
-    // ================================================================
     function buildCalendar() {
         const grid = document.getElementById('calendarGrid');
         grid.innerHTML = '';
         const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-        const startDay = 3; // يوليو 2026 يبدأ يوم أربعاء
+        const startDay = 3;
         const totalDays = 31;
-
         days.forEach(d => {
             const div = document.createElement('div');
             div.textContent = d;
@@ -432,18 +381,15 @@
             div.style.fontWeight = '600';
             grid.appendChild(div);
         });
-
         for (let i = 0; i < startDay; i++) {
             const div = document.createElement('div');
             div.className = 'cal-day empty';
             grid.appendChild(div);
         }
-
-        for (let d = 1; d <= totalDays; d++) {
-            const div = document.createElement('div');
+        for (let d = 1; d <= totalDays; d++) {const div = document.createElement('div');
             div.className = 'cal-day';
             div.textContent = d;
-            const dateStr = July ${d}, 2026;
+            const dateStr = 'July ' + d + ', 2026';
             div.dataset.value = dateStr;
             div.addEventListener('click', function() {
                 document.querySelectorAll('.cal-day').forEach(el => el.classList.remove('selected'));
@@ -455,17 +401,6 @@
     }
     buildCalendar();
 
-    // ================================================================
-    //  تحديث الملخص النهائي
-    // ================================================================
-    function updateFinalSummary() {
-        document.getElementById('finalType').textContent = selectedType || '-';
-        document.getElementById('finalTime').textContent = selectedTime || '-';
-        document.getElementById('finalDate').textContent = selectedDate || '-';
-        document.getElementById('finalFood').textContent = selectedFood || '-';
-    } // ================================================================
-    //  زر YES / NO (الصفحة الأولى)
-    // ================================================================
     let noClickCount = 0;
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
@@ -484,11 +419,10 @@
     noBtn.addEventListener('click', function() {
         noClickCount++;
         if (noClickCount <= 5) {
-            msg1.textContent = 😅 Tried ${noClickCount} times... YES is growing!;
+            msg1.textContent = '😅 Tried ' + noClickCount + ' times... YES is growing!';
             let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
             yesBtn.style.fontSize = (currentSize + 4) + 'px';
             yesBtn.style.padding = (parseFloat(yesBtn.style.padding || '14') + 4) + 'px 36px';
-
             let noSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
             if (noSize > 12) noBtn.style.fontSize = (noSize - 2) + 'px';
         } else {
@@ -503,27 +437,21 @@
         goToPage(2);
     });
 
-    // ================================================================
-    //  إعادة التشغيل
-    // ================================================================
     function resetAll() {
         selectedType = null;
         selectedTime = null;
         selectedDate = null;
         selectedFood = null;
         noClickCount = 0;
-
         document.querySelectorAll('.btn').forEach(b => b.classList.remove('selected'));
         document.querySelectorAll('.cal-day').forEach(d => d.classList.remove('selected'));
         document.getElementById('timeInput').value = '';
-
         yesBtn.style.fontSize = '18px';
         yesBtn.style.padding = '14px 36px';
         noBtn.style.display = 'inline-block';
         noBtn.style.position = 'static';
         noBtn.style.fontSize = '18px';
         msg1.textContent = '';
-
         goToPage(1);
     }
 
